@@ -1,4 +1,4 @@
-# Geocoding Service with Parallel HTTP Request Processor (LMPD Crine Data - 2023)
+# Geocoding Service with Parallel HTTP Request Processor (LMPD Crime Data - 2023)
 
 This script is designed to process data from a CSV file by making parallel HTTP requests to an API endpoint. It reads data from the CSV file, constructs URLs based on the data, and fetches information from the API endpoint. The fetched data is then appended to an output CSV file.
 
