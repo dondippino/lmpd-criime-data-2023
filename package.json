@@ -1,0 +1,21 @@
+{
+  "name": "lm_crime_data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "csvtojson": "^2.0.10",
+    "log-update": "^6.0.0",
+    "n-readlines": "^1.0.1",
+    "node-fetch": "^2.7.0",
+    "queue": "^7.0.0"
+  }
+}

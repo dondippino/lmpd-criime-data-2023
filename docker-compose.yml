@@ -1,0 +1,76 @@
+version: "3"
+
+services:
+  elb:
+    image: haproxy:latest
+    ports:
+      - "8100:8100"
+      - "9900:9900"
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+    networks:
+      - geocoder
+
+  nominatim_service_1:
+    # container_name: nominatim
+    image: mediagis/nominatim:4.3
+    ports:
+      - "9080"
+    environment:
+      # see https://github.com/mediagis/nominatim-docker/tree/master/4.3#configuration for more options
+      PBF_PATH: /nominatim/kentucky-latest.osm.pbf
+      REPLICATION_URL: https://download.geofabrik.de/north-america/us-updates/
+      IMPORT_US_POSTCODES: "true"
+      NOMINATIM_PASSWORD: px#rest#367
+    volumes:
+      - nominatim-data-1:/var/lib/postgresql/14/main
+      - "./kentucky-latest.osm.pbf:/nominatim/kentucky-latest.osm.pbf"
+      # - "./nominatim-app:/nominatim/website"
+    shm_size: 1gb
+    networks:
+      - geocoder
+
+  nominatim_service_2:
+    # container_name: nominatim
+    image: mediagis/nominatim:4.3
+    ports:
+      - "9081"
+    environment:
+      # see https://github.com/mediagis/nominatim-docker/tree/master/4.3#configuration for more options
+      PBF_PATH: /nominatim/kentucky-latest.osm.pbf
+      REPLICATION_URL: https://download.geofabrik.de/north-america/us-updates/
+      IMPORT_US_POSTCODES: "true"
+      NOMINATIM_PASSWORD: px#rest#367
+    volumes:
+      - nominatim-data-2:/var/lib/postgresql/14/main
+      - "./kentucky-latest.osm.pbf:/nominatim/kentucky-latest.osm.pbf"
+      # - "./nominatim-app:/nominatim/website"
+    shm_size: 1gb
+    networks:
+      - geocoder
+
+  nominatim_service_3:
+    # container_name: nominatim
+    image: mediagis/nominatim:4.3
+    ports:
+      - "9082"
+    environment:
+      # see https://github.com/mediagis/nominatim-docker/tree/master/4.3#configuration for more options
+      PBF_PATH: /nominatim/kentucky-latest.osm.pbf
+      REPLICATION_URL: https://download.geofabrik.de/north-america/us-updates/
+      IMPORT_US_POSTCODES: "true"
+      NOMINATIM_PASSWORD: px#rest#367
+    volumes:
+      - nominatim-data-3:/var/lib/postgresql/14/main
+      - "./kentucky-latest.osm.pbf:/nominatim/kentucky-latest.osm.pbf"
+      # - "./nominatim-app:/nominatim/website"
+    shm_size: 1gb
+    networks:
+      - geocoder
+
+volumes:
+  nominatim-data-1:
+  nominatim-data-2:
+  nominatim-data-3:
+networks:
+  geocoder:
